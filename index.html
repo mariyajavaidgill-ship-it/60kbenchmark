@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>60KBenchmark</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Outfit', sans-serif;
+      background:#0b1020;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    :root{
+      --primary:#7c3aed;
+      --secondary:#06b6d4;
+      --accent:#ff4ecd;
+      --card:#131a2e;
+      --text:#cfd6e4;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    section{
+      padding:110px 10%;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      padding:22px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(11,16,32,0.7);
+      backdrop-filter:blur(15px);
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo{
+      font-size:26px;
+      font-weight:700;
+      background:linear-gradient(90deg,var(--accent),var(--secondary));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:#dce3f0;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:var(--secondary);
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle, rgba(124,58,237,0.35), transparent 70%);
+      top:-200px;
+      left:-200px;
+      z-index:-1;
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle, rgba(255,78,205,0.25), transparent 70%);
+      bottom:-250px;
+      right:-200px;
+      z-index:-1;
+    }
+
+    .hero h1{
+      font-size:78px;
+      max-width:1000px;
+      line-height:1.05;
+      margin-bottom:25px;
+    }
+
+    .gradient{
+      background:linear-gradient(90deg,var(--accent),var(--secondary));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      max-width:750px;
+      color:var(--text);
+      line-height:1.8;
+      font-size:19px;
+      margin-bottom:45px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      padding:16px 34px;
+      border-radius:14px;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    .primary-btn{
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+    }
+
+    .secondary-btn{
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .section-title{
+      font-size:52px;
+      margin-bottom:25px;
+      line-height:1.1;
+    }
+
+    .section-title span{
+      color:var(--secondary);
+    }
+
+    .about p,
+    .service p,
+    .project p,
+    .contact p{
+      color:var(--text);
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    /* SERVICES */
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      margin-top:60px;
+    }
+
+    .service{
+      background:rgba(255,255,255,0.03);
+      padding:40px;
+      border-radius:25px;
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.4s;
+      backdrop-filter:blur(10px);
+    }
+
+    .service:hover{
+      transform:translateY(-12px);
+      border-color:rgba(6,182,212,0.3);
+      box-shadow:0 20px 50px rgba(6,182,212,0.08);
+    }
+
+    .service h3{
+      margin-bottom:15px;
+      font-size:25px;
+    }
+
+    /* PROJECTS */
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+      margin-top:60px;
+    }
+
+    .project{
+      overflow:hidden;
+      border-radius:25px;
+      background:var(--card);
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .project:hover{
+      transform:translateY(-12px);
+    }
+
+    .project img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+    }
+
+    .project-content{
+      padding:30px;
+    }
+
+    .project h3{
+      margin-bottom:15px;
+      font-size:28px;
+    }
+
+    /* CONTACT */
+
+    .contact{
+      text-align:center;
+    }
+
+    .contact-box{
+      margin-top:50px;
+      padding:60px;
+      border-radius:30px;
+      background:linear-gradient(
+      135deg,
+      rgba(124,58,237,0.18),
+      rgba(6,182,212,0.12)
+      );
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-links{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-top:35px;
+    }
+
+    footer{
+      padding:35px;
+      text-align:center;
+      color:#8993a7;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .section-title{
+        font-size:40px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      60KBENCHMARK
+    </div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>
+      Designing <span class="gradient">Premium Digital Experiences</span>
+      & Teaching Modern Skills
+    </h1>
+
+    <p>
+      Frontend designer, educator, and digital strategist helping students,
+      brands, and professionals master modern web design, CSS preparation,
+      computer science, compliance awareness, and strategic content writing.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#projects" class="btn primary-btn">
+        View Projects
+      </a>
+
+      <a href="#contact" class="btn secondary-btn">
+        Contact Me
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400">
+
+    <div>
+
+      <h2 class="section-title">
+        About <span>60KBenchmark</span>
+      </h2>
+
+      <p>
+        60KBenchmark is a modern digital brand focused on frontend design,
+        educational mentorship, and professional skill development.
+        The platform blends premium visual experiences with practical
+        learning in CSS competitive exams, computer science,
+        data science, compliance awareness, and content writing.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section id="services">
+
+    <h2 class="section-title">
+      Services & Expertise
+    </h2>
+
+    <div class="service-grid">
+
+      <div class="service">
+
+        <h3>Frontend Design</h3>
+
+        <p>
+          Modern luxury-inspired websites with smooth interactions,
+          premium UI, responsive layouts, and conversion-focused design.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>CSS Exam Mentorship</h3>
+
+        <p>
+          Competitive exam guidance, strategy development,
+          writing support, and preparation planning.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Computer Science</h3>
+
+        <p>
+          Simplified teaching of technical concepts,
+          frontend development, and digital skills.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Compliance & AML</h3>
+
+        <p>
+          Foundational compliance education covering ethics,
+          anti-money laundering awareness, and governance basics.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Data Science</h3>
+
+        <p>
+          Beginner-friendly guidance for analytics,
+          data concepts, and modern data science foundations.
+        </p>
+
+      </div>
+
+      <div class="service">
+
+        <h3>Content Writing</h3>
+
+        <p>
+          Strategic content creation for educational,
+          technical, digital, and professional platforms.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+ <!-- DIGITAL PRODUCTS -->
+
+<section id="projects">
+
+  <h2 class="section-title">
+    Digital <span>Products</span>
+  </h2>
+
+  <p style="
+    max-width:700px;
+    color:var(--text);
+    margin-top:15px;
+    line-height:1.8;
+  ">
+    Premium frontend templates, portfolio designs,
+    educational resources, and modern digital assets
+    available through Gumroad.
+  </p>
+
+  <div class="project-grid">
+
+    <!-- PRODUCT 1 -->
+
+    <div class="project">
+
+      <img src="images/Sarkar Ki seva 60k.jpg">
+
+      <div class="project-content">
+
+        <h3>Sarkar Ki Seva” – A Knowledge Platform  </h3>
+
+        <p>
+          A platform where experience becomes a service, and knowledge becomes accessible on demand.
+        </p>
+
+        <br>
+
+        <a
+          href="https://gumroad.com/products"
+          target="_blank"
+          class="btn primary-btn"
+        >
+          View on Gumroad
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT 2 -->
+
+    <div class="project">
+
+      <img src="images/therapy60k.jpg">
+
+      <div class="project-content">
+
+        <h3>Therapy & Counselling Business Website Template</h3>
+
+        <p>
+          Launch your own professional therapy, counselling, or
+          mental wellness website with this clean,
+          modern, and conversion-focused web template.
+        </p>
+
+        <br>
+
+        <a
+          href="https://gumroad.com/products"
+          target="_blank"
+          class="btn primary-btn"
+        >
+          Buy Template
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT 3 -->
+
+    <div class="project">
+
+      <img src="images/Cookie 60k.jpg">
+
+      <div class="project-content">
+
+        <h3>Cookie Business Website Template</h3>
+
+        <p>
+        Cookie Business Frontend developed for any cookie related niche. Inspired by the love for cookies,
+          this website is perfect to start your cookie business.
+        </p>
+
+        <br>
+
+        <a
+          href="https://gumroad.com/products"
+          target="_blank"
+          class="btn primary-btn"
+        >
+          Explore Product
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- GUMROAD CTA -->
+
+  <div style="
+    margin-top:70px;
+    text-align:center;
+    padding:50px;
+    border-radius:30px;
+    background:linear-gradient(
+      135deg,
+      rgba(124,58,237,0.15),
+      rgba(6,182,212,0.12)
+    );
+    border:1px solid rgba(255,255,255,0.08);
+  ">
+
+    <h3 style="
+      font-size:38px;
+      margin-bottom:20px;
+    ">
+      Explore All Products on Gumroad
+    </h3>
+
+    <p style="
+      color:var(--text);
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:35px;
+    ">
+      Discover premium frontend templates,
+      educational resources, portfolio designs,
+      and modern digital products created by 60KBenchmark.
+    </p>
+
+    <a
+      href="https://gumroad.com/products"
+      target="_blank"
+      class="btn primary-btn"
+    >
+      Visit Gumroad Store
+    </a>
+
+  </div>
+
+</section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <div class="contact-box">
+
+      <h2 class="section-title">
+        Let’s Build Something Modern
+      </h2>
+
+      <p>
+        Available for frontend projects, mentorship,
+        educational collaborations, and professional consulting.
+      </p>
+
+      <div class="contact-links">
+
+    <a href="mailto:mariyajavaidgill@gmail.com?subject=Project Inquiry&body=Hello Mariya,"
+   class="btn primary-btn">
+   Email
+</a>
+
+          <a href="https://www.linkedin.com/in/mariyajavaid/"
+     target="_blank"
+     class="btn secondary-btn">
+     LinkedIn
+  </a>
+
+     <a href="https://wa.me/923007011202?text=Hello%20I%20want%20to%20contact%20you"
+   class="btn secondary-btn"
+   target="_blank">
+  WhatsApp
+</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 60KBenchmark — Premium Digital Experiences
+  </footer>
+
+  <!-- JS -->
+
+  <script>
+
+    const sections = document.querySelectorAll("section");
+
+    sections.forEach(section => {
+
+      section.style.opacity = "0";
+      section.style.transform = "translateY(50px)";
+      section.style.transition = "all 1s ease";
+
+    });
+
+    window.addEventListener("scroll", () => {
+
+      sections.forEach(section => {
+
+        const top = section.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+
+          section.style.opacity = "1";
+          section.style.transform = "translateY(0)";
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
