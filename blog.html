@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog | 60KBENCHMARK</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           60KBENCHMARK DESIGN SYSTEM
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --yellow: #EFD35A;
+            --purple: #8758F5;
+            --purple-dark: #7646E8;
+            --purple-light: #9A72FF;
+
+            --bg: #FFFDF7;
+            --card: #FFFFFF;
+
+            --text: #3b1063;
+            --text-light: #666666;
+
+            --border: #fade65;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            padding: 18px 10%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: var(--yellow);
+
+            border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--purple);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--purple-dark);
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--purple);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 180px 10% 100px;
+
+            position: relative;
+            overflow: hidden;
+
+            background: linear-gradient(
+                    180deg,
+                    #FFF7CC 0%,
+                    #FFFDF7 100%
+            );
+        }
+
+        .hero::before {
+            content: '';
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            background: radial-gradient(
+                    circle,
+                    rgba(250, 222, 101, .35),
+                    transparent 70%
+            );
+
+            top: -250px;
+            left: -250px;
+
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            background: radial-gradient(
+                    circle,
+                    rgba(135, 88, 245, .12),
+                    transparent 70%
+            );
+
+            bottom: -150px;
+            right: -150px;
+
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            line-height: 1.1;
+            max-width: 900px;
+
+            margin-bottom: 25px;
+
+            color: var(--purple-dark);
+        }
+
+        .gradient {
+            color: var(--purple);
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            font-size: 18px;
+            line-height: 1.9;
+
+            color: var(--text-light);
+        }
+
+        /* =========================
+           SECTION TITLES
+        ========================= */
+
+        .section-title {
+            font-size: 52px;
+            margin-bottom: 25px;
+            text-align: center;
+
+            color: var(--purple-dark);
+        }
+
+        .section-title span {
+            color: var(--purple);
+        }
+
+        .section-subtitle {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: 0 auto 60px;
+
+            color: var(--text-light);
+
+            line-height: 1.8;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .btn {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            border-radius: 14px;
+
+            background: var(--purple);
+            color: white;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            margin-top: 35px;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: var(--purple-dark);
+
+            border: 1px solid var(--border);
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 24px;
+
+            transition: .3s;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .04);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            box-shadow: 0 15px 35px rgba(135, 88, 245, .12);
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .service-grid {
+            display: grid;
+
+            grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 30px;
+        }
+
+        .service {
+            padding: 40px;
+        }
+
+        .service h3 {
+            color: var(--purple-dark);
+            margin-bottom: 15px;
+        }
+
+        .service p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+            gap: 35px;
+        }
+
+        .project img {
+            height: 240px;
+            width: 100%;
+
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project h3 {
+            color: var(--purple-dark);
+            margin-bottom: 15px;
+        }
+
+        .project p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* =========================
+           BLOG
+        ========================= */
+
+        .blog-grid {
+            display: grid;
+
+            grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+            gap: 35px;
+        }
+
+        .blog-card {
+            overflow: hidden;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-date {
+            color: var(--purple);
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+        .blog-content h3 {
+            color: var(--purple-dark);
+
+            margin-bottom: 15px;
+
+            line-height: 1.3;
+        }
+
+        .blog-content p {
+            color: var(--text-light);
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            display: inline-block;
+
+            padding: 6px 14px;
+
+            border-radius: 50px;
+
+            background: var(--yellow-light);
+
+            color: var(--purple);
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           CTA / NEWSLETTER
+        ========================= */
+
+        .newsletter,
+        .contact-box {
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 30px;
+
+            padding: 60px;
+
+            text-align: center;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .04);
+        }
+
+        .newsletter h2,
+        .contact-box h2 {
+            color: var(--purple-dark);
+            margin-bottom: 20px;
+        }
+
+        .newsletter p,
+        .contact-box p {
+            color: var(--text-light);
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px;
+
+            text-align: center;
+
+            background: var(--yellow-light);
+
+            color: var(--purple);
+
+            border-top: 1px solid var(--border);
+        }
+
+        /* =========================
+           SCROLLBAR
+        ========================= */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple);
+            border-radius: 10px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .newsletter,
+            .contact-box {
+                padding: 35px 25px;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+
+        <span>60KBENCHMARK</span>
+    </div>
+
+    <ul id="navMenu">
+        <li><a href="index.html">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#projects">Products</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+
+</nav>
+
+<section class="hero">
+
+    <h1>
+        Latest <span class="gradient">Insights & Articles</span>
+    </h1>
+
+    <p>
+        Explore web development, digital products,
+        business growth, content strategy,
+        technology and professional learning.
+    </p>
+
+</section>
+
+<section class="blog-section">
+
+    <h2 class="section-title">
+        Featured Articles
+    </h2>
+
+    <div class="blog-card card">
+
+        <img src="images/google-business-profile.jpg">
+
+        <div class="blog-content">
+
+            <div class="tag">
+                Google Business
+            </div>
+
+            <div class="blog-date">
+                June 2026
+            </div>
+
+            <h3>
+                Google Account vs Google Business Profile
+            </h3>
+
+            <p>
+                Understand ownership, reviews, business emails, and how to safely manage your Google Business Profile.
+            </p>
+
+            <a href="blog/google-account-vs-google-business-profile.html" class="btn">
+                Read Article
+            </a>
+
+        </div>
+
+
+    </div>
+
+    <div class="blog-card">
+
+        <img src="images/html-vs-wordpress.jpg">
+
+        <div class="blog-content">
+
+            <div class="blog-date">
+                June 2026
+            </div>
+
+            <h3>
+                Plain HTML/CSS Blog vs WordPress
+            </h3>
+
+            <p>
+                Compare performance, SEO, maintenance costs, and discover which platform is best for your business
+                website.
+            </p>
+
+            <a href="blog/html-vs-wordpress-for-business-websites.html" class="btn">
+                Read Article
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="blog-card">
+        <img src="images/blog3.jpg" alt="">
+        <div class="blog-content">
+            <div class="blog-date">June 2026</div>
+            <h3>Why Every Brand Needs A Digital Presence</h3>
+            <p>
+                Build trust, authority and long-term growth
+                through a strong online presence.
+            </p>
+            <a href="blog/why-every-brand-needs-a-digital-presence.html" class="btn">
+                Read Article
+            </a>
+        </div>
+    </div>
+
+    </div>
+
+</section>
+
+<section class="newsletter">
+
+    <h2>More Articles Coming Soon</h2>
+
+    <p>
+        New content covering web development,
+        computer science, digital strategy,
+        business growth and technology.
+    </p>
+
+    <a href="index.html#contact" class="btn">
+        Get In Touch
+    </a>
+
+</section>
+
+<footer>
+    © 2026 60KBENCHMARK • Blog & Insights
+</footer>
+
+<script>
+    function toggleMenu() {
+        document
+            .getElementById('navMenu')
+            .classList
+            .toggle('active');
+    }
+</script>
+
+</body>
+</html>
+
